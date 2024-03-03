@@ -1,0 +1,33 @@
+--- mm/mmap.c
++++ mm/mmap.c
+@@ -44,6 +44,7 @@
+ #include <linux/userfaultfd_k.h>
+ #include <linux/moduleparam.h>
+ #include <linux/pkeys.h>
++#include <linux/ksm.h>
+ 
+ #include <asm/uaccess.h>
+ #include <asm/cacheflush.h>
+@@ -818,6 +827,7 @@ int __vma_adjust(struct vm_area_struct *vma, unsigned long start,
+ 		end_changed = true;
+ 	}
+ 	vma->vm_pgoff = pgoff;
++
+ 	if (adjust_next) {
+ 		next->vm_start += adjust_next << PAGE_SHIFT;
+ 		next->vm_pgoff += adjust_next;
+@@ -950,10 +961,14 @@ int __vma_adjust(struct vm_area_struct *vma, unsigned long start,
+ 			 */
+ 			VM_WARN_ON(mm->highest_vm_end != end);
+ 		}
++	} else {
++		if (next && !insert)
++			uksm_vma_add_new(next);
+ 	}
+ 	if (insert && file)
+ 		uprobe_mmap(insert);
+ 
++ 	uksm_vma_add_new(vma);
+ 	validate_mm(mm);
+ 
+ 	return 0;
