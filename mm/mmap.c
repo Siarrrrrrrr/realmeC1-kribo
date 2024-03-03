@@ -46,6 +46,8 @@
 #include <linux/pkeys.h>
 #include <linux/oom.h>
 
+#include <linux/ksm.h>
+
 #include <asm/uaccess.h>
 #include <asm/cacheflush.h>
 #include <asm/tlb.h>
@@ -1033,7 +1035,11 @@ again:
 			 */
 			VM_WARN_ON(mm->highest_vm_end != vm_end_gap(vma));
 		}
-	}
+	} else {
+		if (next && !insert)
+			uksm_vma_add_new(next);
+ 	}
+
 	if (insert && file)
 		uprobe_mmap(insert);
 
@@ -1042,6 +1048,7 @@ again:
 	if (!keep_locked)
 		vm_raw_write_end(vma);
 
+	uksm_vma_add_new(vma);
 	validate_mm(mm);
 
 	return 0;
