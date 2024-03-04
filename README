@@ -1,4 +1,34 @@
-        Linux kernel release 4.x <http://kernel.org/>
+Kribo Realme C1 0.1.7
+
+Im Using Proton Clang 13
+
+git clone https://github.com/kdrag0n/proton-clang --depth=1
+
+If u dont want KSU just compile it
+
+If u want use KSU, CHange CONFIG_KSU=y first then use this 
+
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+
+or 
+
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+
+Then COmpile it 
+
+for Script Compile u can use this one 
+
+https://telegra.ph/Script-Compile-Kribo-Realme-C1-03-04
+
+If u want to download my kernel u can use this one then found anything kernel version what u need And readh the changelog at my channel telegram
+
+https://t.me/MrKriboChannel
+
+
+
+
+
+Linux kernel release 4.x <http://kernel.org/>
 
 These are the release notes for Linux version 4.  Read them carefully,
 as they tell you what this is all about, explain how to install the
