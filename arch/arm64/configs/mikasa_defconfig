@@ -1,4 +1,4 @@
-CONFIG_LOCALVERSION="-kribo-realmeC1-0.1.6"
+CONFIG_LOCALVERSION="-kribo-realmeC1-0.1.7"
 ################################################
 # config wakelock block
 CONFIG_BOEFFLA_WL_BLOCKER=y
