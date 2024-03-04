@@ -1,5 +1,8 @@
 CONFIG_LOCALVERSION="-kribo-realmeC1-0.1.6"
 ################################################
+# config wakelock block
+CONFIG_BOEFFLA_WL_BLOCKER=y
+################################################
 # LE9 stuff
 CONFIG_ANON_MIN_KBYTES=393216
 CONFIG_CLEAN_LOW_KBYTES=393216
